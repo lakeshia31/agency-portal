@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Amiri:wght@400;700&family=Tangerine:wght@400;700&display=swap');
+
+.App {
+  min-height: 100vh;
+  font-family: 'Cormorant Garamond', serif;
+  background-color: #f5efe6;
+  color: #3d2e1f;
+  overflow-x: hidden;
+}
+
+/* Color palette as CSS variables */
+:root {
+  --cream: #f5efe6;
+  --cream-soft: #faf6ef;
+  --sage: #6b7c5f;
+  --sage-dark: #4f5e45;
+  --sage-light: #8b9a7e;
+  --gold: #b89968;
+  --gold-dark: #8a6f47;
+  --gold-light: #d4b88a;
+  --brown: #3d2e1f;
+  --brown-soft: #5c4633;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-script {
+  font-family: 'Tangerine', cursive;
+}
+
+.font-arabic {
+  font-family: 'Amiri', serif;
+  direction: rtl;
+}
+
+.font-body {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Smooth fade-in animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 30s linear infinite;
+}
+
+/* Ornamental separator */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--gold);
+  margin: 1.5rem 0;
+}
+.ornament::before,
+.ornament::after {
+  content: "";
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+
+/* Reveal on scroll utility - via IntersectionObserver in JS */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gold gradient text */
+.gold-text {
+  background: linear-gradient(135deg, #b89968 0%, #d4b88a 50%, #8a6f47 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Floating petals / particles container */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.petal {
+  position: absolute;
+  font-size: 1.2rem;
+  color: rgba(184, 153, 104, 0.4);
+  animation: floatPetal linear infinite;
+}
+@keyframes floatPetal {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Music button pulse */
+@keyframes ringPulse {
+  0% { box-shadow: 0 0 0 0 rgba(184, 153, 104, 0.55); }
+  70% { box-shadow: 0 0 0 18px rgba(184, 153, 104, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(184, 153, 104, 0); }
+}
+.music-btn-pulse {
+  animation: ringPulse 2.2s infinite;
+}
+
+/* Cover screen */
+.cover-bg {
+  background:
+    radial-gradient(ellipse at center, rgba(61, 46, 31, 0.35), rgba(61, 46, 31, 0.7) 60%, rgba(30, 25, 18, 0.95)),
+    linear-gradient(180deg, #4f5e45 0%, #3d4d36 40%, #2a2018 100%);
+}
+
+/* Decorative arch */
+.arch-frame {
+  border: 1px solid rgba(184, 153, 104, 0.55);
+  border-radius: 50% 50% 8px 8px / 60% 60% 8px 8px;
+  position: relative;
+}
+.arch-frame::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(184, 153, 104, 0.35);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Section paper background */
+.paper-bg {
+  background-color: var(--cream-soft);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(184, 153, 104, 0.10), transparent 45%),
+    radial-gradient(circle at 80% 90%, rgba(107, 124, 95, 0.10), transparent 45%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><g fill='none' stroke='%23b89968' stroke-width='0.4' opacity='0.18'><path d='M30 0 L60 30 L30 60 L0 30 Z'/><circle cx='30' cy='30' r='1.2' fill='%23b89968' opacity='0.5'/></g></svg>");
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: auto, auto, 60px 60px;
+}
+
+/* Sage gradient section */
+.sage-bg {
+  background-color: rgba(107, 124, 95, 0.10);
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(184, 153, 104, 0.12), transparent 50%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%236b7c5f' stroke-width='0.5' opacity='0.20'><circle cx='40' cy='40' r='18'/><circle cx='40' cy='40' r='10'/><path d='M40 22 L40 58 M22 40 L58 40 M27 27 L53 53 M53 27 L27 53'/></g></svg>");
+  background-repeat: no-repeat, repeat;
+  background-size: auto, 80px 80px;
+}
+
+/* Comment card */
+.comment-card {
+  background: linear-gradient(180deg, #faf6ef 0%, #f5efe6 100%);
+  border: 1px solid rgba(184, 153, 104, 0.25);
+  box-shadow: 0 2px 12px -6px rgba(138, 111, 71, 0.15);
+}
+
+/* Buttons */
+.btn-gold {
+  background: linear-gradient(135deg, #b89968, #8a6f47);
+  color: #faf6ef;
+  border: 1px solid rgba(245, 239, 230, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  letter-spacing: 0.08em;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 10px 30px -10px rgba(184, 153, 104, 0.55);
+}
+.btn-outline-gold {
+  border: 1px solid var(--gold);
+  color: var(--gold-dark);
+  background: transparent;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.btn-outline-gold:hover {
+  background: var(--gold);
+  color: var(--cream-soft);
+}
+
+/* Countdown box */
+.cd-box {
+  background: linear-gradient(180deg, rgba(75, 92, 65, 0.92), rgba(61, 46, 31, 0.92));
+  color: var(--cream-soft);
+  border: 1px solid rgba(184, 153, 104, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+/* Hide scroll when locked */
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
